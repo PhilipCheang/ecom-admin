@@ -15,7 +15,7 @@ export default function Home({newProducts}) {
       </h2>
       <div className="flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden">
 {/* you need to add users email on google cloud OAuth consent screen */}
-        <Image src={session?.user?.image} alt="image" className="w-6 h-6" />
+        <Image src={session?.user?.image} alt="image" className="w-6 h-6" width={24} height={24} />
         <span className="px-2">
           {session?.user?.name}
         </span>

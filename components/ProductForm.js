@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Spinner from "./Spinner";
 import { ReactSortable } from "react-sortablejs";
-import Image from "next/image";
 // this is how you grab the properties title, desc, price
 export default function ProductForm({
   _id,
@@ -75,7 +74,7 @@ export default function ProductForm({
           setList={updateImagesOrder}>
           {!!images?.length && images.map(link => (
             <div key={link} className="h-24">
-              <Image src={link} alt="" className="rounded-lg" width={24} height={24}/>
+              <img src={link} alt="" className="rounded-lg" />
             </div>
           ))}
         </ReactSortable>

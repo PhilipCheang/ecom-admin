@@ -3,6 +3,7 @@ import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 
 export default function Home({newProducts}) {
@@ -14,7 +15,7 @@ export default function Home({newProducts}) {
       </h2>
       <div className="flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden">
 {/* you need to add users email on google cloud OAuth consent screen */}
-        <img src={session?.user?.image} alt="image" className="w-6 h-6"/>
+        <Image src={session?.user?.image} alt="image" className="w-6 h-6" />
         <span className="px-2">
           {session?.user?.name}
         </span>

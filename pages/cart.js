@@ -7,7 +7,7 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Nav from "@/components/Nav";
-import { ProductWrapper } from "@/components/ProductBox";
+import Image from "next/image";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -38,7 +38,7 @@ const ProductImageBox = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  img{
+  .next-image {
     max-width: 60px;
     max-height: 60px;
   }
@@ -46,7 +46,7 @@ const ProductImageBox = styled.div`
     padding: 10px;
     width: 100px;
     height: 100px;
-    img{
+    .next-image {
       max-width: 80px;
       max-height: 80px;
     }
@@ -158,7 +158,7 @@ export default function CartPage() {
                     <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <img src={product.images[0]} alt=""/>
+                          <Image src={product.images[0]} alt="" />
                         </ProductImageBox>
                         {product.title}
                       </ProductInfoCell>

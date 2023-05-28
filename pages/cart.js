@@ -97,7 +97,7 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();     
     }
-  }, []);
+  }, [clearCart]);
   function moreOfThisProduct(id) {
     addProduct(id);
   }
@@ -172,14 +172,16 @@ export default function CartPage() {
                           onClick={() => moreOfThisProduct(product._id)}>+</Button>
                       </td>
                       <td>
-                        ${cartProducts.filter(id => id === product._id).length * product.price}
+                        ${(
+                          cartProducts.filter(id => id === product._id).length * product.price
+                        ).toFixed(2)}
                       </td>
                     </tr>
                   ))}
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>${total.toFixed(2)}</td>
                   </tr>
                 </tbody>
               </Table>

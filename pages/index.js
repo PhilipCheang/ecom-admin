@@ -1,35 +1,41 @@
-import Layout from "@/components/Layout";
-import NewProducts from "@/components/NewProducts";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/Product";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import Layout from '@/components/Layout';
+import NewProducts from '@/components/NewProducts';
+import { mongooseConnect } from '@/lib/mongoose';
+import { Product } from '@/models/Product';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 
-
-export default function Home({newProducts}) {
-  const {data: session} = useSession();
-  return <Layout>
-    <div className="text-blue-900 flex justify-between">
-      <h2>
-        Hello, <b>{session?.user?.name}</b>
-      </h2>
-      <div className="flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden">
-{/* you need to add users email on google cloud OAuth consent screen */}
-        <Image src={session?.user?.image} alt="image" className="w-6 h-6" width={24} height={24} />
-        <span className="px-2">
-          {session?.user?.name}
-        </span>
+export default function Home({ newProducts }) {
+  const { data: session } = useSession();
+  return (
+    <Layout>
+      <div className="text-blue-900 flex justify-between">
+        <h2>
+          Hello, <b>{session?.user?.name}</b>
+        </h2>
+        <div className="flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden">
+          {/* you need to add users email on google cloud OAuth consent screen */}
+          <Image
+            src={session?.user?.image}
+            alt="image"
+            className="w-6 h-6"
+            width={24}
+            height={24}
+          />
+          <span className="px-2">{session?.user?.name}</span>
+        </div>
       </div>
-    </div>
-    <NewProducts products={newProducts}/>
-  </Layout>
+      <NewProducts products={newProducts} />
+    </Layout>
+  );
 }
 
 export async function getServerSideProps() {
   await mongooseConnect();
-  const newProducts = await Product.find({}, null, {sort: {'_id':-1}})
+  const newProducts = await Product.find({}, null, { sort: { _id: -1 } });
   return {
     props: {
       newProducts: JSON.parse(JSON.stringify(newProducts)),
-  },
-}}
+    },
+  };
+}
